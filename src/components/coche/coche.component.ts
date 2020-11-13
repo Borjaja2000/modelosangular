@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Coche} from './../../models/coche';
 @Component({
   selector: 'app-coche',
@@ -6,10 +6,11 @@ import {Coche} from './../../models/coche';
   styleUrls: ['./coche.component.css']
 })
 export class CocheComponent implements OnInit {
-  public car: Coche;
+  @Input() car: Coche;
   public mensaje: string;
-  constructor() { 
-    this.car = new Coche("PONTIAC", "FIREBIRD", 0, 200, 20, false);
+  constructor() { }
+  //CUANDO RECIBIMOS OBJETOS, NO SE UTILIZA EL CONSTRUCTOR
+  ngOnInit(): void {
     this.comprobarEstado();
   }
   comprobarEstado() {
@@ -35,7 +36,5 @@ export class CocheComponent implements OnInit {
         this.car.velocidad = this.car.velocidadmaxima;
       }
     }
-  }
-  ngOnInit(): void {
   }
 }
